@@ -1,0 +1,27 @@
+.grid-box {
+  border-bottom: 5px solid black;
+  height: 645px;
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.grid-box div {
+  margin-top: auto;
+}
+
+.btn {
+  margin-top: 10px;
+  margin-bottom: 0;
+  height: 50px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.alert {
+  margin-top: 10px;
+}
