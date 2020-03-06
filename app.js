@@ -16,6 +16,7 @@ generateArray();
 
 //Generates New Array
 function generateArray() {
+  //Removes the previous array bars
   let child = box.lastElementChild;
   while (child) {
     box.removeChild(child);
@@ -23,12 +24,13 @@ function generateArray() {
   }
   array = [];
 
+  //Generates new array call
   for (let i = 0; i < 150; i++) {
     let randNum = randIntInRange(5, 640);
     array.push(randNum);
   }
-  console.log(array);
 
+  //Creates new bars to append
   for (let i = 0; i < array.length; i++) {
     let bar = document.createElement("div");
     bar.classList.add("grid-bar");
