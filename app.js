@@ -1,4 +1,4 @@
-//Global variables
+//Global Variables
 const MAX_ARRAY_SIZE = 150;
 const BAR_HEIGHT_MIN = 5;
 const BAR_HEIGHT_MAX = 640;
@@ -9,7 +9,7 @@ const BAR_SWAPPING_COLOR = "lightcoral";
 let currentBar = MAX_ARRAY_SIZE - 1;
 let previousBar = MAX_ARRAY_SIZE - 1;
 
-//Grabbing all DOM Elements
+//Grabbing DOM Elements
 const box = document.querySelector(".grid-box");
 const buttonGen = document.querySelector("#btn-gen");
 const buttonSort = document.querySelector("#btn-sort");
@@ -34,13 +34,13 @@ function generateArray() {
   }
   array = [];
 
-  //Generates new array call
+  //Generates New Array Call
   for (let i = 0; i < MAX_ARRAY_SIZE; i++) {
     let randNum = randIntInRange(BAR_HEIGHT_MIN, BAR_HEIGHT_MAX);
     array.push(randNum);
   }
 
-  //Creates new bars to append
+  //Creates New Bars To Append
   for (let i = 0; i < array.length; i++) {
     let bar = document.createElement("div");
     bar.classList.add("grid-bar");
@@ -51,12 +51,12 @@ function generateArray() {
   }
 }
 
-//Generates a random integer in given range
+//Generates A Random Integer In Given Range
 function randIntInRange(start, end) {
   return Math.round(Math.random() * (end - start) + start);
 }
 
-//Changes the bar height in DOM (iterates)
+//Changes The Bar Height In DOM (Iterates)
 function sortBars() {
   let i;
   buttonGen.disabled = true;
@@ -66,18 +66,18 @@ function sortBars() {
       sortArray();
     }, i * TICK_SPEED);
   }
-  //Resets bar color positions
+  //Resets Bar Color Positions
   currentBar = MAX_ARRAY_SIZE - 1;
   previousBar = MAX_ARRAY_SIZE - 1;
 }
 
-//Resets disabled buttons
+//Resets Disabled Buttons
 function resetButoon() {
   buttonGen.disabled = false;
   buttonSort.disabled = false;
 }
 
-//Changes bar height in DOM (single)
+//Changes Bar Height In DOM (Single)
 function sortArray() {
   const bars = document.querySelectorAll(".grid-bar");
   boubleSort(array);
@@ -86,7 +86,7 @@ function sortArray() {
     bars[i].style.height = `${array[i]}px`;
   }
 
-  //Changes swapping bar color to red and green
+  //Changes Swapping Bar Color To Red And Green
   bars[currentBar].style.backgroundColor = BAR_SWAPPING_COLOR;
   if (previousBar > currentBar) {
     bars[previousBar].style.backgroundColor = BAR_COLOR;
@@ -95,7 +95,7 @@ function sortArray() {
   currentBar--;
 }
 
-//Sorts the given array using bouble sort
+//Sorts The Given Array Using Bouble Sort
 function boubleSort(arr) {
   let swapped = true;
 
