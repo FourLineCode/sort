@@ -1,3 +1,11 @@
+//Global variables
+const MAX_ARRAY_SIZE = 150;
+const BAR_HEIGHT_MIN = 5;
+const BAR_HEIGHT_MAX = 640;
+const TICK_SPEED = 70;
+let currentBar = MAX_ARRAY_SIZE - 1;
+let previousBar = MAX_ARRAY_SIZE - 1;
+
 //Grabbing all DOM Elements
 const box = document.querySelector(".grid-box");
 const buttonGen = document.querySelector("#btn-gen");
@@ -9,7 +17,7 @@ buttonGen.addEventListener("click", generateArray);
 buttonSort.addEventListener("click", sortBars);
 buttonReset.addEventListener("click", resetButoon);
 
-//Generating Array
+//Initializing Array
 let array = [];
 generateArray();
 
@@ -24,8 +32,8 @@ function generateArray() {
   array = [];
 
   //Generates new array call
-  for (let i = 0; i < 150; i++) {
-    let randNum = randIntInRange(5, 640);
+  for (let i = 0; i < MAX_ARRAY_SIZE; i++) {
+    let randNum = randIntInRange(BAR_HEIGHT_MIN, BAR_HEIGHT_MAX);
     array.push(randNum);
   }
 
@@ -53,14 +61,13 @@ function sortBars() {
   for (i = 0; i < array.length; i++) {
     setTimeout(() => {
       sortArray();
-    }, i * 70);
+    }, i * TICK_SPEED);
   }
-  f = 149;
-  g = 149;
+  //Resets bar color positions
+  currentBar = 149;
+  previousBar = 149;
 }
 
-let f = 149;
-let g = 149;
 //Resets disabled buttons
 function resetButoon() {
   buttonGen.disabled = false;
@@ -76,12 +83,13 @@ function sortArray() {
     bars[i].style.height = `${array[i]}px`;
   }
 
-  bars[f].style.backgroundColor = "lightcoral";
-  if (g > f) {
-    bars[g].style.backgroundColor = "#00FA9A";
-    g--;
+  //Changes swapping bar color to red and green
+  bars[currentBar].style.backgroundColor = "lightcoral";
+  if (previousBar > currentBar) {
+    bars[previousBar].style.backgroundColor = "#00FA9A";
+    previousBar--;
   }
-  f--;
+  currentBar--;
 }
 
 //Sorts the given array using bouble sort
