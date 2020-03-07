@@ -1,3 +1,7 @@
+body {
+  background-color: #fff5ee;
+}
+
 .grid-box {
   border-bottom: 5px solid black;
   height: 645px;

@@ -11,7 +11,6 @@ buttonReset.addEventListener("click", resetButoon);
 
 //Generating Array
 let array = [];
-console.log(array);
 generateArray();
 
 //Generates New Array
@@ -54,10 +53,14 @@ function sortBars() {
   for (i = 0; i < array.length; i++) {
     setTimeout(() => {
       sortArray();
-    }, i * 100);
+    }, i * 70);
   }
+  f = 149;
+  g = 149;
 }
 
+let f = 149;
+let g = 149;
 //Resets disabled buttons
 function resetButoon() {
   buttonGen.disabled = false;
@@ -66,12 +69,19 @@ function resetButoon() {
 
 //Changes bar height in DOM (single)
 function sortArray() {
-  let bars = document.querySelectorAll(".grid-bar");
+  const bars = document.querySelectorAll(".grid-bar");
   boubleSort(array);
 
   for (let i = 0, j = 1; i < array.length; i++, j++) {
     bars[i].style.height = `${array[i]}px`;
   }
+
+  bars[f].style.backgroundColor = "lightcoral";
+  if (g > f) {
+    bars[g].style.backgroundColor = "#00FA9A";
+    g--;
+  }
+  f--;
 }
 
 //Sorts the given array using bouble sort
