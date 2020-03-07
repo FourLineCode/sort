@@ -3,6 +3,9 @@ const MAX_ARRAY_SIZE = 150;
 const BAR_HEIGHT_MIN = 5;
 const BAR_HEIGHT_MAX = 640;
 const TICK_SPEED = 70;
+const BAR_WIDTH = 4;
+const BAR_COLOR = "#00FA9A";
+const BAR_SWAPPING_COLOR = "lightcoral";
 let currentBar = MAX_ARRAY_SIZE - 1;
 let previousBar = MAX_ARRAY_SIZE - 1;
 
@@ -41,9 +44,9 @@ function generateArray() {
   for (let i = 0; i < array.length; i++) {
     let bar = document.createElement("div");
     bar.classList.add("grid-bar");
-    bar.style.width = "4px";
+    bar.style.width = `${BAR_WIDTH}px`;
     bar.style.height = `${array[i]}px`;
-    bar.style.backgroundColor = "#00FA9A";
+    bar.style.backgroundColor = BAR_COLOR;
     box.appendChild(bar);
   }
 }
@@ -64,8 +67,8 @@ function sortBars() {
     }, i * TICK_SPEED);
   }
   //Resets bar color positions
-  currentBar = 149;
-  previousBar = 149;
+  currentBar = MAX_ARRAY_SIZE - 1;
+  previousBar = MAX_ARRAY_SIZE - 1;
 }
 
 //Resets disabled buttons
@@ -84,9 +87,9 @@ function sortArray() {
   }
 
   //Changes swapping bar color to red and green
-  bars[currentBar].style.backgroundColor = "lightcoral";
+  bars[currentBar].style.backgroundColor = BAR_SWAPPING_COLOR;
   if (previousBar > currentBar) {
-    bars[previousBar].style.backgroundColor = "#00FA9A";
+    bars[previousBar].style.backgroundColor = BAR_COLOR;
     previousBar--;
   }
   currentBar--;
