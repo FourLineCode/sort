@@ -4,7 +4,7 @@ body {
 
 .grid-box {
   border-bottom: 5px solid black;
-  height: 645px;
+  height: 660px;
   margin-top: 1vh;
   display: flex;
   justify-content: space-around;
@@ -28,4 +28,13 @@ body {
 
 .alert {
   margin-top: 10px;
+}
+
+.range-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-range {
+  width: 250px;
 }

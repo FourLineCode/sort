@@ -10,14 +10,26 @@
   <body>
     <div class="container">
       <div class="buttons">
+        <div class="range-input">
+          <label for="array-size" id="array-size-label">Size: 150</label>
+          <input
+            type="range"
+            class="custom-range"
+            min="50"
+            max="300"
+            value="150"
+            step="1"
+            id="array-size"
+          />
+        </div>
         <button class="btn btn-secondary" id="btn-gen">
           Generate New Array
         </button>
         <button class="btn btn-success" id="btn-sort">Bouble Sort</button>
         <button class="btn btn-danger" id="btn-reset">Reset Buttons</button>
-        <div class="alert alert-danger" role="alert">
+        <!-- <div class="alert alert-danger" role="alert">
           Reset buttons after sorting is complete
-        </div>
+        </div> -->
       </div>
       <div class="grid-box"></div>
     </div>

@@ -1,31 +1,35 @@
 //Global Variables
-const MAX_ARRAY_SIZE = 150;
-const BAR_HEIGHT_MIN = 5;
-const BAR_HEIGHT_MAX = 640;
-const TICK_SPEED = 70;
-const BAR_WIDTH = 4;
-const BAR_COLOR = "#00FA9A";
-const BAR_SWAPPING_COLOR = "lightcoral";
-let currentBar = MAX_ARRAY_SIZE - 1;
-let previousBar = MAX_ARRAY_SIZE - 1;
+const BAR_HEIGHT_MIN = 5; //Minimum Height For Bars
+const BAR_HEIGHT_MAX = 640; //Maximum Height For Bars
+const BAR_COLOR = "#00FA9A"; //Color For Normal Bars
+const BAR_SWAPPING_COLOR = "lightcoral"; //Color For Swapping Bars
+let tick_speed = 70; //Initial Tick Speed For Swap
+let bar_width = 4; //Initial Width Of Individual Bars
+let max_array_size = 150; //Initial Maximum Size Of Array (Number Of Bars)
+let currentBar = max_array_size - 1; //Swap Color Helper
+let previousBar = max_array_size - 1; //Swap Color Helper
+let array = []; //Creates Initial Array
 
 //Grabbing DOM Elements
 const box = document.querySelector(".grid-box");
 const buttonGen = document.querySelector("#btn-gen");
 const buttonSort = document.querySelector("#btn-sort");
 const buttonReset = document.querySelector("#btn-reset");
-
-//Adding Event Listeners
-buttonGen.addEventListener("click", generateArray);
-buttonSort.addEventListener("click", sortBars);
-buttonReset.addEventListener("click", resetButoon);
+const rangeSlider = document.querySelector("#array-size");
 
 //Initializing Array
-let array = [];
-generateArray();
+generateArray(max_array_size);
+
+//Adding Event Listeners
+buttonGen.addEventListener("click", () => {
+  generateArray(max_array_size);
+});
+buttonSort.addEventListener("click", sortBars);
+buttonReset.addEventListener("click", resetButoon);
+rangeSlider.addEventListener("input", changeArraySize);
 
 //Generates New Array
-function generateArray() {
+function generateArray(maxSize) {
   //Removes the previous array bars
   let child = box.lastElementChild;
   while (child) {
@@ -35,7 +39,7 @@ function generateArray() {
   array = [];
 
   //Generates New Array Call
-  for (let i = 0; i < MAX_ARRAY_SIZE; i++) {
+  for (let i = 0; i < maxSize; i++) {
     let randNum = randIntInRange(BAR_HEIGHT_MIN, BAR_HEIGHT_MAX);
     array.push(randNum);
   }
@@ -44,7 +48,8 @@ function generateArray() {
   for (let i = 0; i < array.length; i++) {
     let bar = document.createElement("div");
     bar.classList.add("grid-bar");
-    bar.style.width = `${BAR_WIDTH}px`;
+    bar.classList.add(`bar${i}`);
+    bar.style.width = `${bar_width}px`;
     bar.style.height = `${array[i]}px`;
     bar.style.backgroundColor = BAR_COLOR;
     box.appendChild(bar);
@@ -56,25 +61,57 @@ function randIntInRange(start, end) {
   return Math.round(Math.random() * (end - start) + start);
 }
 
+//Changes Max Array Size
+function changeArraySize() {
+  let sliderValue = rangeSlider.value;
+  const rangeLabel = document.querySelector("#array-size-label");
+
+  //Changes Max Array Size To The Slider Value
+  max_array_size = sliderValue;
+  currentBar = max_array_size - 1;
+  previousBar = max_array_size - 1;
+  rangeLabel.textContent = `Size: ${sliderValue}`;
+
+  //Changes Bar Width And Tick Speed According To Array Size
+  if (max_array_size > 100 && max_array_size <= 200) {
+    bar_width = 4;
+    tick_speed = 70;
+  } else if (max_array_size <= 100 && max_array_size >= 50) {
+    bar_width = 6;
+    tick_speed = 100;
+  } else if (max_array_size < 50) {
+    bar_width = 8;
+    tick_speed = 150;
+  } else if (max_array_size > 200) {
+    bar_width = 2;
+    tick_speed = 30;
+  }
+
+  //Generates New Array For Slider Changes
+  generateArray(max_array_size);
+}
+
 //Changes The Bar Height In DOM (Iterates)
 function sortBars() {
   let i;
   buttonGen.disabled = true;
   buttonSort.disabled = true;
+  rangeSlider.disabled = true;
   for (i = 0; i < array.length; i++) {
     setTimeout(() => {
       sortArray();
-    }, i * TICK_SPEED);
+    }, i * tick_speed);
   }
   //Resets Bar Color Positions
-  currentBar = MAX_ARRAY_SIZE - 1;
-  previousBar = MAX_ARRAY_SIZE - 1;
+  currentBar = max_array_size - 1;
+  previousBar = max_array_size - 1;
 }
 
 //Resets Disabled Buttons
 function resetButoon() {
   buttonGen.disabled = false;
   buttonSort.disabled = false;
+  rangeSlider.disabled = false;
 }
 
 //Changes Bar Height In DOM (Single)
