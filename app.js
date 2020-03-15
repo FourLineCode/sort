@@ -17,7 +17,7 @@ const box = document.querySelector(".grid-box");
 const buttonGen = document.querySelector("#btn-gen");
 const buttonSort = document.querySelector("#btn-sort");
 const buttonSpeed = document.querySelector("#btn-speed");
-const buttonReset = document.querySelector("#btn-reset");
+// const buttonReset = document.querySelector("#btn-reset");
 const rangeSlider = document.querySelector("#array-size");
 const rangeLabel = document.querySelector("#array-size-label");
 
@@ -33,7 +33,7 @@ buttonGen.addEventListener("click", () => {
 });
 buttonSort.addEventListener("click", sortBars2);
 buttonSpeed.addEventListener("click", increaseSpeed);
-buttonReset.addEventListener("click", resetButoon);
+// buttonReset.addEventListener("click", resetButoon);
 rangeSlider.addEventListener("input", changeArraySize);
 
 //Generates New Array
@@ -41,6 +41,11 @@ function generateArray(maxSize) {
   //Resets Sorting Speed To 0
   setSpeedCount(1);
   speed = 2;
+
+  //Resets Buttons
+  buttonSort.disabled = false;
+  buttonSpeed.disabled = true;
+
   //Removes the previous array bars
   let child = box.lastElementChild;
   while (child) {
@@ -124,9 +129,9 @@ function changeArraySize() {
 //Bouble Sorting Animation
 function sortBars2() {
   //Disables/Enables Buttons When Sorting
-  buttonGen.disabled = true;
+  // buttonGen.disabled = true;
   buttonSort.disabled = true;
-  rangeSlider.disabled = true;
+  // rangeSlider.disabled = true;
   buttonSpeed.disabled = false;
 
   bubbleSort(array);
@@ -188,12 +193,12 @@ function setSpeedCount(num) {
 }
 
 //Resets Disabled Buttons
-function resetButoon() {
-  buttonGen.disabled = false;
-  buttonSort.disabled = false;
-  rangeSlider.disabled = false;
-  buttonSpeed.disabled = true;
-}
+// function resetButoon() {
+//   // buttonGen.disabled = false;
+//   buttonSort.disabled = false;
+//   // rangeSlider.disabled = false;
+//   buttonSpeed.disabled = true;
+// }
 
 //Changes Bar Height In DOM (Single)
 // function sortArray() {
