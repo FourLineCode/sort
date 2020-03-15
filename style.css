@@ -38,3 +38,14 @@ body {
 .custom-range {
   width: 250px;
 }
+
+#array-size-label {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+#size-badge {
+  width: 80px;
+  padding: 0;
+  margin: 2px;
+}
