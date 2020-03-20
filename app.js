@@ -31,7 +31,7 @@ buttonSpeed.disabled = true;
 buttonGen.addEventListener("click", () => {
   generateArray(max_array_size);
 });
-buttonSort.addEventListener("click", sortBars2);
+buttonSort.addEventListener("click", sortArray);
 buttonSpeed.addEventListener("click", increaseSpeed);
 // buttonReset.addEventListener("click", resetButoon);
 rangeSlider.addEventListener("input", changeArraySize);
@@ -110,24 +110,8 @@ function changeArraySize() {
   generateArray(max_array_size);
 }
 
-//Changes The Bar Height In DOM (Iterates)
-// function sortBars() {
-//   let i;
-//   buttonGen.disabled = true;
-//   buttonSort.disabled = true;
-//   rangeSlider.disabled = true;
-//   for (i = 0; i < array.length; i++) {
-//     setTimeout(() => {
-//       sortArray();
-//     }, i * primary_tick_speed);
-//   }
-//   //Resets Bar Color Positions
-//   currentBar = max_array_size - 1;
-//   previousBar = max_array_size - 1;
-// }
-
 //Bouble Sorting Animation
-function sortBars2() {
+function sortArray() {
   //Disables/Enables Buttons When Sorting
   // buttonGen.disabled = true;
   buttonSort.disabled = true;
@@ -183,7 +167,7 @@ function increaseSpeed() {
     //Changes Speed Multiplier
     setSpeedCount(speed++);
 
-    sortBars2();
+    sortArray();
   }
 }
 
@@ -198,44 +182,6 @@ function setSpeedCount(num) {
 //   buttonSort.disabled = false;
 //   // rangeSlider.disabled = false;
 //   buttonSpeed.disabled = true;
-// }
-
-//Changes Bar Height In DOM (Single)
-// function sortArray() {
-//   const bars = document.querySelectorAll(".grid-bar");
-//   bubbleSort(array);
-
-//   for (let i = 0, j = 1; i < array.length; i++, j++) {
-//     bars[i].style.height = `${array[i]}px`;
-//   }
-
-//   //Changes Swapping Bar Color To Red And Green
-//   bars[currentBar].style.backgroundColor = SWAPPED_BAR_COLOR;
-//   if (previousBar > currentBar) {
-//     bars[previousBar].style.backgroundColor = BAR_COLOR;
-//     previousBar--;
-//   }
-//   currentBar--;
-// }
-
-//Sorts The Given Array Using Bouble Sort
-// function bubbleSort(arr) {
-//   let swapped = true;
-
-//   while (swapped) {
-//     for (let i = 0; i < arr.length; i++) {
-//       swapped = false;
-//       if (arr[i] > arr[i + 1]) {
-//         let temp = arr[i];
-//         arr[i] = arr[i + 1];
-//         arr[i + 1] = temp;
-//         swapped = true;
-//       }
-//     }
-//   }
-
-//   console.log(arr);
-//   return arr;
 // }
 
 function bubbleSort(arr) {
